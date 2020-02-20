@@ -1,84 +1,44 @@
+import datetime
 import sqlite3
-from sqlite3 import Error
+from typing import List, Tuple
+
+from test_internet import TestInternetResult
 
 
 class Database:
-    def __init__(self, table_to_create: str):
-        self.DB: str = "db.sqlite"
-        # creates db file if none exists
-        self.connection: sqlite3.Connection = self.__create_connection(self.DB)
-        # DB TABLE
-        self.create_table = table_to_create
+    def __init__(self) -> None:
+        self.the_date = datetime.datetime.now().isoformat()
+        self.conn = sqlite3.connect("status.db")
+        self.c = self.conn.cursor()
+        self.c.execute(
+            """CREATE TABLE IF NOT EXISTS status
+                    (id integer primary key, date text, result text)"""
+        )
 
-        
-    def __create_connection(self, path: str) -> sqlite3.Connection:
-        connection = None
+    def add(self, test_result: TestInternetResult) -> None:
         try:
-            connection = sqlite3.connect(path)
-            print("Connection to SQLite DB successful")
-        except Error as e:
-            print(f"The error {e} occurred")
-        return connection
+            with self.conn:
+                self.conn.execute(
+                    "insert into status(date, result) values (?, ?)",
+                    (self.the_date, test_result),
+                )
 
-    def execute_query(self, connection: sqlite3.Connection, query: str) -> None:
-        cursor = connection.cursor()
-        try:
-            cursor.execute(query)
-            connection.commit()
-            print("Query executed successfully")
-        except Error as e:
-            print("The error '" + str(e) + "' occurred")
+        except sqlite3.IntegrityError as error:
+            print(f"Failed to commit to db with Error: {error}")
 
-    def execute_read_query(self, connection: sqlite3.Connection, query: str):
-        cursor = connection.cursor()
-        result = None
-        try:
-            cursor.execute(query)
-            result = cursor.fetchall()
-            return result
-        except Error as e:
-            print("The error '" + str(e) + "' occurred")
+    def close(self) -> None:
+        self.conn.close()
 
+    def get_last_five_minutes(self) -> List[Tuple[int,str,str]]:
+        now = datetime.datetime.now()
+        now_iso = now.isoformat()
 
+        fiveMinBack = now - datetime.timedelta(minutes=5)
+        fiveMinBack_iso = fiveMinBack.isoformat()
 
+        time_range_tuple = (fiveMinBack_iso, now_iso)
+        sql_query = "select * from status where date between ? and ?"
 
-## EXAMPLES 
-"""
-create_users_table = """CREATE TABLE IF NOT EXISTS users (
-                                        id INTEGER PRIMARY KEY AUTOINCREMENT,
-                                        name TEXT NOT NULL,
-                                        age INTEGER,
-                                        gender TEXT,
-                                        nationality TEXT
-                                    );"""
+        last_five_minutes = [row for row in self.c.execute(sql_query, time_range_tuple)]
 
-# creates table in DB
-execute_query(connection, create_users_table)
-
-create_users = """ INSERT INTO users (name, age, gender, nationality)
-                   VALUES ('James', 25, 'male', 'USA'),
-                   ('Leila', 32, 'female', 'France'),
-                   ('Brigitte', 35, 'female', 'England'),
-                   ('Mike', 40, 'male', 'Denmark'),
-                   ('Elizabeth', 21, 'female', 'Canada');"""
-
-# inserts into DB
-execute_query(connection, create_users) 
-
-# get all users
-select_users = "SELECT * from users"
-users = execute_read_query(connection, select_users)
-for user in users:
-    print(user)
-
-# update a record in table
-update_post_description = """UPDATE posts
-                             set description = "The weather has become pleasant now"
-                             WHERE id = 2"""
-execute_query(connection, update_post_description)
-
-# delete from table
-delete_comment = """DELETE FROM comments
-                             WHERE id = 5"""
-execute_query(connection, delete_comment)
-"""
+        return last_five_minutes
