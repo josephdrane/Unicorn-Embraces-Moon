@@ -26,13 +26,14 @@ python3 main.py --test
 ```
 
 
-## what's the hardware here?
+## what's needed to build something like this?
 
 - Soldering Iron
 - Cables
 - Longer Power Cable
 - Screws to mount
 - 32G Samsung MicroSD Card
+- doublesided velcro strips
 - Raspbian Pi OS
 
 - Digital Loggers IoT Power Relay -
