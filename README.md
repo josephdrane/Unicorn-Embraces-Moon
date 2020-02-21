@@ -13,6 +13,8 @@ code runs and tests the connection and then writes results to the DB.
 the thought is that when a failure is detected we go ahead and reboot the device.
 from there we'll have to figure out the wait time before we test again
 
+**ADDED SUPPORT TO VIEW FAILED EASILY**
+```python3 main.py --view```
 
 ## development setup
 
