@@ -28,17 +28,17 @@ python3 main.py --test
 
 ## what's the hardware here?
 
-Soldering Iron
-Cables
-Longer Power Cable
-Screws to mount
-32G Samsung MicroSD Card
-Raspbian Pi OS
+- Soldering Iron
+- Cables
+- Longer Power Cable
+- Screws to mount
+- 32G Samsung MicroSD Card
+- Raspbian Pi OS
 
-Digital Loggers IoT Power Relay -
+- Digital Loggers IoT Power Relay -
 ![Digital Loggers IoT Power Relay](http://www.digital-loggers.com/iot.jpg)
 
-Raspberry Pi Zero W - 
+- Raspberry Pi Zero W - 
 [Amazon](https://www.amazon.com/Vilros-Raspberry-Kit-Premium-Essential-Accessories/dp/B0748NK116)
 ![VilrosRaspberryPiZeroW](https://images-na.ssl-images-amazon.com/images/I/91V-bnJcEWL._SL1500_.jpg)
 
