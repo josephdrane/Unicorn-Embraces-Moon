@@ -11,7 +11,10 @@ from lib.test_internet import TestInternet, TestInternetResult
 
 
 parser = argparse.ArgumentParser(description="Test Internet and Powercycle w/ Pi Zero")
+
 parser.add_argument("--test", action="store_true", help="Run Tests")
+parser.add_argument("--view", action="store_true", help="Select * from status.db")
+
 args = parser.parse_args()
 
 if args.test:
@@ -21,6 +24,7 @@ if args.test:
     db = Database()
     db.add(result)
     last_five: List[Tuple[int,str,str]] = db.get_last_five_minutes()
+    db.close()
 
     from pprint import pprint
     pprint(last_five)
@@ -30,3 +34,13 @@ if args.test:
         rebooter: PiZero = PiZero()
         rebooter.power_off()
         rebooter.power_on()
+
+if args.view:
+    db = Database()
+    failures = db.get_failures()
+    print('\n<--- Failures In DB --->\n')
+    pprint(failures)
+    print('\n<--- Failures In DB --->\n')
+
+
+args = parser.parse_args()
