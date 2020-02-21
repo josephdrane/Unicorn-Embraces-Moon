@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
 
 import argparse
-from pprint import pprint
 import sqlite3
+from typing import List, Tuple
 
-from db import Database
-from test_internet import TestInternet, TestInternetResult
+from lib.db import Database
+from lib.check_failed import CheckFailed
+from lib.pi_zero import PiZero
+from lib.test_internet import TestInternet, TestInternetResult
 
 
 parser = argparse.ArgumentParser(description="Test Internet and Powercycle w/ Pi Zero")
@@ -15,8 +17,16 @@ args = parser.parse_args()
 if args.test:
     test: TestInternet = TestInternet("https://facebook.com")
     result: TestInternetResult = test.result.value
+    
     db = Database()
     db.add(result)
-    last_five = db.get_last_five_minutes()
+    last_five: List[Tuple[int,str,str]] = db.get_last_five_minutes()
+
+    from pprint import pprint
     pprint(last_five)
 
+    check_failed = CheckFailed(last_five)
+    if check_failed.result == TestInternetResult.FAILED:
+        rebooter: PiZero = PiZero()
+        rebooter.power_off()
+        rebooter.power_on()
