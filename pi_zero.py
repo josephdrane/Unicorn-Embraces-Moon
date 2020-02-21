@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 from gpiozero import OutputDevice as Power
 
 
