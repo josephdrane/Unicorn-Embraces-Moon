@@ -14,8 +14,7 @@ I'll list out the steps and maybe someone could commit some code to automate the
 2. GPIO pins and hardware have been tested from python (python interpreter is good)
 Check out the `pinout` cli command.
 
-3. update then go to install git and python venv
-`sudo apt-get update -y`
+3. install git and python venv
 `sudo apt-get install git python3-venv -y`
 
 4. create an ssh key, taking default prompts with:

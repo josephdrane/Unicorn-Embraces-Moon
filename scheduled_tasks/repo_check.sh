@@ -21,7 +21,7 @@ echo -e =======================${NOCOLOR}
 UPDATED="branch is up to date"
 NOT_UPDATED="branch is behind"
 
-# If updated then we are good
+# If repo current then no action needed
 if [[ "$STATUS" == *"$UPDATED"* ]]; then
     echo -e ${FINISHED} Repo is ${UPDATED} ${NOCOLOR}
 fi
