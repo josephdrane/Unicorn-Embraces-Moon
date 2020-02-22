@@ -5,6 +5,29 @@
 
 End state should be main.py called with a command name --test
 This setup should be automated and checking github for changes and auto deploying based on that.
+I'll list out the steps and maybe someone could commit some code to automate the install / setup/ config.
+
+### Pre-requisites : 
+1. Pi has internet and update it
+`sudo apt-get update -y`
+
+2. GPIO pins and hardware have been tested from python (python interpreter is good)
+Check out the `pinout` cli command.
+
+3. install git
+`sudo apt-get install git -y`
+
+4. create an ssh key, taking default prompts with:
+`ssh-keygen`
+I didn't do a passphrase
+
+5. add ~/.ssh/id_rsa.pub to github or bitbucket or whatever for ssh access w/ out passwords
+`cat .ssh/id_rsa.pub`
+copy / paste output to SSH keys in your repo for access
+
+### Deployment Setup : 
+
+
 
 
 ## application summary
