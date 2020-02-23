@@ -10,6 +10,7 @@ ERROR='\033[0;31m'
 
 
 # UPDATING SERVER
+echo -e
 echo -e ${ACTION} UPDATING SERVER
 echo -e =======================${NOCOLOR}
 sudo apt-get update -y
@@ -28,6 +29,7 @@ echo -e ${ACTION} Checking SSH Key For Git Access
 echo -e =======================${NOCOLOR}
 id_rsa_pub=~/.ssh/id_rsa.pub
 if test -f "$id_rsa_pub"; then
+    echo -e
     echo -e ${FINISHED} SSH Public Key $id_rsa_pub exists! ${NOCOLOR}
     cat $id_rsa_pub
 else
@@ -41,7 +43,7 @@ else
         echo -e ${ERROR} SSH Key creation failed : $id_rsa_pub
     fi
 fi
-echo -e =======================${NOCOLOR}
+echo -e ${FINISHED}=======================${NOCOLOR}
 echo -e 
 
 
@@ -65,7 +67,7 @@ sudo cp ./scheduled_tasks/test_internet.cron /etc/cron.d/
 
 sudo chmod 644 /etc/cron.d/repo_check.cron
 sudo chmod 644 /etc/cron.d/test_internet.cron
-
+echo -e
 
 # FINISHED
 echo -e ${FINISHED} FINISHED
