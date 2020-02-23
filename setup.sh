@@ -38,6 +38,7 @@ else
         cat $id_rsa_pub
     else
         echo -e ${ERROR} SSH Key creation failed : $id_rsa_pub
+    fi
 fi
 echo -e =======================${NOCOLOR}
 echo -e 
@@ -68,3 +69,5 @@ chmod 644 /etc/cron.d/test_internet.cron
 # FINISHED
 echo -e ${FINISHED} FINISHED
 echo -e =======================${NOCOLOR}
+
+DONE
