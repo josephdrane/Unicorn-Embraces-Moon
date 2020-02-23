@@ -50,3 +50,21 @@ cd ~/unicorn-embraces-moon
 python3 -m virtualenv env
 ./env/bin/python3 -m pip install -r requirements.txt
 echo -e
+
+
+# CRON Job Setup
+echo -e ${ACTION} SETUP CRON JOBS
+echo -e =======================${NOCOLOR}
+chmod +x ./scheduled_tasks/repo_check.sh
+chmod +x ./scheduled_tasks/test_internet.sh
+
+cp ./scheduled_tasks/repo_check.cron /etc/cron.d/
+cp ./scheduled_tasks/test_internet.cron /etc/cron.d/
+
+chmod 644 /etc/cron.d/repo_check.cron
+chmod 644 /etc/cron.d/test_internet.cron
+
+
+# FINISHED
+echo -e ${FINISHED} FINISHED
+echo -e =======================${NOCOLOR}
