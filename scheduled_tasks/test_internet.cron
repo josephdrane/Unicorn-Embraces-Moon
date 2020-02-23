@@ -1,6 +1,7 @@
 # Every 15 Minutes
 
-SHELL=/bin/sh
+# SHELL=/bin/sh
+SHELL=/bin/bash
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 
 # .---------------- minute (0 - 59)
@@ -9,4 +10,4 @@ PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 # |  |  |  .------- month (1 - 12) OR jan,feb,mar,apr ...
 # |  |  |  |  .---- day of week (0 - 6) (Sunday=0 or 7) OR sun,mon,tue,wed,thu,fri,sat
 # |  |  |  |  |
-*/2  *  *  *  * pi  cd /home/pi/Unicorn-Embraces-Moon/scheduled_tasks/ && bash test_internet.sh
+*/2  *  *  *  * pi  bash -c "/home/pi/Unicorn-Embraces-Moon/scheduled_tasks/test_internet.sh"
