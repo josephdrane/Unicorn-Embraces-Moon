@@ -1,7 +1,8 @@
 #!/bin/bash
 
 # Terminal Colors
-ACTION='\033[1;90m'
+# ACTION='\033[1;90m'
+ACTION='\033[1;96m'
 FINISHED='\033[1;96m'
 READY='\033[1;92m'
 NOCOLOR='\033[0m'
@@ -69,5 +70,4 @@ sudo chmod 644 /etc/cron.d/test_internet.cron
 # FINISHED
 echo -e ${FINISHED} FINISHED
 echo -e =======================${NOCOLOR}
-
-DONE
+echo -e
