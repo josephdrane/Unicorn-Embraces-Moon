@@ -37,7 +37,8 @@ if [[ "$STATUS" == *"$NOT_UPDATED"* ]]; then
 
     echo -e ${ACTION} Copying new cron job files
     sudo cp ./*.cron /etc/cron.d/
-    sudo chmod 644 /etc/cron.d/*.cron
+    sudo chmod 644 /etc/cron.d/repo_check.cron
+    sudo chmod 644 /etc/cron.d/test_internet.cron
     echo -e ${FINISHED} Files copied over 
     echo -e =======================${NOCOLOR}
     
