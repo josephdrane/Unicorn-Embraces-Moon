@@ -43,7 +43,6 @@ else
         echo -e ${ERROR} SSH Key creation failed : $id_rsa_pub
     fi
 fi
-echo -e ${FINISHED}=======================${NOCOLOR}
 echo -e 
 
 
