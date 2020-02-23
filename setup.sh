@@ -18,7 +18,7 @@ echo -e
 
 
 # INSTALL GIT & VENV
-echo -e ${ACTION} INSTALL GIT and VENV
+echo -e ${ACTION} INSTALL GIT, sqlite3, python venv
 echo -e =======================${NOCOLOR}
 sudo apt-get install git python3-venv
 echo -e 
