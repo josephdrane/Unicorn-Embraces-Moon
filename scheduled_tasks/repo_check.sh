@@ -36,13 +36,14 @@ if [[ "$STATUS" == *"$NOT_UPDATED"* ]]; then
     echo -e =======================${NOCOLOR}
 
     echo -e ${ACTION} Copying new cron job files
-    cp ./*.cron /etc/cron.d/
+    sudo cp ./*.cron /etc/cron.d/
+    sudo chmod 644 /etc/cron.d/*.cron
     echo -e ${FINISHED} Files copied over 
     echo -e =======================${NOCOLOR}
     
     echo -e ${ACTION} Python environment setup
     cd /home/pi/Unicorn-Embraces-Moon
-    python3 -m virtualenv env
+    python3 -m venv env
     ./env/bin/python3 -m pip install -r requirements.txt
     echo -e ${FINISHED} Python Environment Setup/Update Complete 
     echo -e =======================${NOCOLOR}

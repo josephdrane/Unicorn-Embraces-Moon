@@ -58,14 +58,9 @@ echo -e
 # CRON Job Setup
 echo -e ${ACTION} SETUP CRON JOBS
 echo -e =======================${NOCOLOR}
-chmod +x ./scheduled_tasks/repo_check.sh
-chmod +x ./scheduled_tasks/test_internet.sh
-
-sudo cp ./scheduled_tasks/repo_check.cron /etc/cron.d/
-sudo cp ./scheduled_tasks/test_internet.cron /etc/cron.d/
-
-sudo chmod 644 /etc/cron.d/repo_check.cron
-sudo chmod 644 /etc/cron.d/test_internet.cron
+chmod +x ./scheduled_tasks/*.sh
+sudo cp ./*.cron /etc/cron.d/
+sudo chmod 644 /etc/cron.d/*.cron
 echo -e
 
 # FINISHED
