@@ -38,11 +38,5 @@ if [[ "$STATUS" == *"$NOT_UPDATED"* ]]; then
     echo -e ${FINISHED} Now Repo Is Updated
     echo -e =======================${NOCOLOR}
     echo -e
-
-    echo -e ${ACTION} Running Setup
-    cd ../
-    bash -c "setup.sh"
-    echo -e =======================${NOCOLOR}
-    echo -e
 fi
 

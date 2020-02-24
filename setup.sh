@@ -59,10 +59,10 @@ echo -e
 echo -e ${ACTION} SETUP CRON JOBS
 echo -e =======================${NOCOLOR}
 
-REPO_CHECK="*/15 * * * * root bash /home/pi/Unicorn-Embraces-Moon/scheduled_tasks/repo_check.sh"
+REPO_CHECK="*/15 * * * * bash /home/pi/Unicorn-Embraces-Moon/scheduled_tasks/repo_check.sh"
 (crontab -l 2>/dev/null; echo "${REPO_CHECK}") | crontab -
 
-TEST_INTERNET="*/2 * * * * root bash /home/pi/Unicorn-Embraces-Moon/scheduled_tasks/test_internet.sh"
+TEST_INTERNET="*/2 * * * * bash /home/pi/Unicorn-Embraces-Moon/scheduled_tasks/test_internet.sh"
 (crontab -l 2>/dev/null; echo "${TEST_INTERNET}") | crontab -
 
 echo -e
