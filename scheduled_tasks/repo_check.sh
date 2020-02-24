@@ -24,29 +24,25 @@ NOT_UPDATED="branch is behind"
 # If repo current then no action needed
 if [[ "$STATUS" == *"$UPDATED"* ]]; then
     echo -e ${FINISHED} Repo is ${UPDATED} ${NOCOLOR}
+    echo -e =======================${NOCOLOR}
+    echo -e
 fi
 
 # If not updated then we need to update
 if [[ "$STATUS" == *"$NOT_UPDATED"* ]]; then
     echo -e ${ERROR} Repo is Not Updated. ${NOCOLOR}
+    echo -e
     
     echo -e ${ACTION} Updating the repo ${NOCOLOR}
     git pull
     echo -e ${FINISHED} Now Repo Is Updated
     echo -e =======================${NOCOLOR}
+    echo -e
 
-    echo -e ${ACTION} Copying new cron job files
-    sudo cp ./*.cron /etc/cron.d/
-    sudo chmod 644 /etc/cron.d/repo_check.cron
-    sudo chmod 644 /etc/cron.d/test_internet.cron
-    echo -e ${FINISHED} Files copied over 
+    echo -e ${ACTION} Running Setup
+    cd ../
+    bash -c "setup.sh"
     echo -e =======================${NOCOLOR}
-    
-    echo -e ${ACTION} Python environment setup
-    cd /home/pi/Unicorn-Embraces-Moon
-    python3 -m venv env
-    ./env/bin/python3 -m pip install -r requirements.txt
-    echo -e ${FINISHED} Python Environment Setup/Update Complete 
-    echo -e =======================${NOCOLOR}
+    echo -e
 fi
 
