@@ -59,8 +59,8 @@ echo -e
 echo -e ${ACTION} SETUP CRON JOBS
 echo -e =======================${NOCOLOR}
 
-REPO_CHECK="*/15 * * * * root bash -c \"/home/pi/Unicorn-Embraces-Moon/scheduled_tasks/repo_check.sh\""
-TEST_INTERNET="*/2 * * * * root bash -c \"/home/pi/Unicorn-Embraces-Moon/scheduled_tasks/test_internet.sh\""
+REPO_CHECK="*/15 * * * * root bash -c /home/pi/Unicorn-Embraces-Moon/scheduled_tasks/repo_check.sh"
+TEST_INTERNET="*/2 * * * * root bash -c /home/pi/Unicorn-Embraces-Moon/scheduled_tasks/test_internet.sh"
 
 CRON_JOBS=($REPO_CHECK $TEST_INTERNET)
 
