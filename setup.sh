@@ -59,16 +59,11 @@ echo -e
 echo -e ${ACTION} SETUP CRON JOBS
 echo -e =======================${NOCOLOR}
 
-REPO_CHECK="*/15 * * * * root bash -c /home/pi/Unicorn-Embraces-Moon/scheduled_tasks/repo_check.sh"
-TEST_INTERNET="*/2 * * * * root bash -c /home/pi/Unicorn-Embraces-Moon/scheduled_tasks/test_internet.sh"
+REPO_CHECK="*/15 * * * * root bash /home/pi/Unicorn-Embraces-Moon/scheduled_tasks/repo_check.sh"
+(crontab -l 2>/dev/null; echo "${REPO_CHECK}") | crontab -
 
-CRON_JOBS=($REPO_CHECK $TEST_INTERNET)
-
-for CRON_JOB in "${CRON_JOBS[@]}"
-do
-    # sudo cat $CRON_JOB >> /etc/crontab
-    (crontab -l 2>/dev/null; echo "${CRON_JOB}") | crontab -
-done
+TEST_INTERNET="*/2 * * * * root bash /home/pi/Unicorn-Embraces-Moon/scheduled_tasks/test_internet.sh"
+(crontab -l 2>/dev/null; echo "${TEST_INTERNET}") | crontab -
 
 echo -e
 
