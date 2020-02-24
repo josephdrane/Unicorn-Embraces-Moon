@@ -58,10 +58,20 @@ echo -e
 # CRON Job Setup
 echo -e ${ACTION} SETUP CRON JOBS
 echo -e =======================${NOCOLOR}
-sudo cp ./scheduled_tasks/*.cron /etc/cron.d/
-sudo chmod 644 /etc/cron.d/repo_check.cron
-sudo chmod 644 /etc/cron.d/test_internet.cron
+
+REPO_CHECK="*/15 * * * * root bash -c \"/home/pi/Unicorn-Embraces-Moon/scheduled_tasks/repo_check.sh\""
+TEST_INTERNET="*/2 * * * * root bash -c \"/home/pi/Unicorn-Embraces-Moon/scheduled_tasks/test_internet.sh\""
+
+CRON_JOBS=($REPO_CHECK $TEST_INTERNET)
+
+for CRON_JOB in "${CRON_JOBS[@]}"
+do
+    (crontab -l 2>/dev/null; echo $CRON_JOB) | crontab -
+    echo $i 
+done
+
 echo -e
+
 
 # FINISHED
 echo -e ${FINISHED} FINISHED
