@@ -66,7 +66,8 @@ CRON_JOBS=($REPO_CHECK $TEST_INTERNET)
 
 for CRON_JOB in "${CRON_JOBS[@]}"
 do
-    sudo cat $CRON_JOB >> /etc/crontab
+    # sudo cat $CRON_JOB >> /etc/crontab
+    (crontab -l 2>/dev/null; echo "${CRON_JOB}") | crontab -
 done
 
 echo -e
