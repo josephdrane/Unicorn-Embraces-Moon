@@ -10,7 +10,7 @@ from .test_internet import TestInternetResult
 class Database:
     def __init__(self) -> None:
         self.the_date = datetime.datetime.now().isoformat()
-        self.conn = sqlite3.connect("~/Unicorn-Embraces-Moon.db")
+        self.conn = sqlite3.connect("/home/pi/Unicorn-Embraces-Moon.db")
         self.c = self.conn.cursor()
         self.c.execute(
             """CREATE TABLE IF NOT EXISTS status
