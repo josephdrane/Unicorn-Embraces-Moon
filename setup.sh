@@ -66,7 +66,7 @@ CRON_JOBS=($REPO_CHECK $TEST_INTERNET)
 
 for CRON_JOB in "${CRON_JOBS[@]}"
 do
-    (crontab -l 2>/dev/null; echo $CRON_JOB) | crontab -
+    (crontab -l 2>/dev/null; echo -e $CRON_JOB) | crontab -
     echo $i 
 done
 
