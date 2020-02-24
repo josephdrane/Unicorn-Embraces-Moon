@@ -9,6 +9,6 @@ ERROR='\033[0;31m'
 # Getting Status
 echo -e ${ACTION}Testing Internet${NOCOLOR}
 
-/home/pi/Unicorn-Embraces-Moon/env/bin/python3 main.py --test
+/home/pi/Unicorn-Embraces-Moon/env/bin/python3 /home/pi/Unicorn-Embraces-Moon/main.py --test
 
 echo -e ${FINISHED}=======================${NOCOLOR}
